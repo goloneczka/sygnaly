@@ -4,4 +4,4 @@ class SignalContext:
         self._strategy = strategy
 
     def context_sygnal(self):
-        return self._strategy.sygnal()
+        return self._strategy.signal()

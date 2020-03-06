@@ -1,13 +1,20 @@
-import matplotlib.pyplot as plt
-from signals.GaussSignal import GaussSignal
+
 from signals.SignalContext import SignalContext
-from signals.SinusSignal import SinusSignal
+from signals.Signals import SinusHalfSignal, SinusTwoHalfSignal, GaussSignal, SinusSignal, RectSignal, TriangleSignal, \
+    RectSimetricSignal, JumpSignal, IndividualSignalDiscreet, ImpulsSignalDiscreet, IndividualSignal
 
 if __name__ == "__main__":
+    # sygnaly
+    individualSignal = IndividualSignal()
     gaussSignal = GaussSignal()
     sinusSignal = SinusSignal()
-    signalContext = SignalContext(sinusSignal)
+    sinusHalfSignal = SinusHalfSignal()
+    sinusTwoHalfSignal = SinusTwoHalfSignal()
+    reactSignal = RectSignal()
+    triangleSignal = TriangleSignal()
+    rectSimetricSignal = RectSimetricSignal()
+    jumpSignal = JumpSignal()
+    individualSignalDiscreet = IndividualSignalDiscreet()
+    impulsSignalDiscreet = ImpulsSignalDiscreet()
+    signalContext = SignalContext(individualSignal)
     samples, values = signalContext.context_sygnal()
-
-    plt.plot(samples, values)
-    plt.show()
