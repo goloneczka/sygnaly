@@ -1,7 +1,5 @@
-import matplotlib.pyplot as plt
 
-
-class SignalParams:
+class SignalsParams:
     n = 200  # czestosc probkowania
 
     def get_params(self):
@@ -47,6 +45,3 @@ class SignalParams:
         p = input("podaj prawdopodobienstwo skoku (p): ")
         return float(a), float(t1), float(d) + float(t1), float(f), float(p)
 
-    def show_plot(self, samples, values, str1=''):
-        plt.plot(samples, values, str1)
-        plt.show()

@@ -1,4 +1,5 @@
 
+from Operations import Operations
 from signals.SignalContext import SignalContext
 from signals.Signals import SinusHalfSignal, SinusTwoHalfSignal, GaussSignal, SinusSignal, RectSignal, TriangleSignal, \
     RectSimetricSignal, JumpSignal, IndividualSignalDiscreet, ImpulsSignalDiscreet, IndividualSignal
@@ -6,7 +7,7 @@ from signals.Signals import SinusHalfSignal, SinusTwoHalfSignal, GaussSignal, Si
 if __name__ == "__main__":
     # sygnaly
     individualSignal = IndividualSignal()
-    gaussSignal = GaussSignal()
+    gaussSignal = GaussSignal() # ten sygnal jest cos nie halo
     sinusSignal = SinusSignal()
     sinusHalfSignal = SinusHalfSignal()
     sinusTwoHalfSignal = SinusTwoHalfSignal()
@@ -16,5 +17,18 @@ if __name__ == "__main__":
     jumpSignal = JumpSignal()
     individualSignalDiscreet = IndividualSignalDiscreet()
     impulsSignalDiscreet = ImpulsSignalDiscreet()
-    signalContext = SignalContext(individualSignal)
-    samples, values = signalContext.context_sygnal()
+
+    signalContext = SignalContext(reactSignal)
+    signal_1 = signalContext.context_sygnal()
+    signal_1.show_plot()
+
+    signalContext = SignalContext(SinusSignal)
+    signal_2 = signalContext.context_sygnal()
+    signal_2.show_plot()
+
+    signal_1.calculate_absolute_average_value()
+
+    operations = Operations()
+    signal_3 = operations.mult(signal_1, signal_2)
+    signal_3.show_plot()
+
