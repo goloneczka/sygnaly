@@ -1,4 +1,6 @@
 import math
+import random
+
 import numpy as np
 
 from Signal import Signal
@@ -25,7 +27,14 @@ class GaussSignal:
         a, t1, d, n = self.signals_parameters.get_params_gauss()
 
         samples = np.linspace(t1, d, n)
-        values = [(1 / math.sqrt(2 * math.pi) * math.exp((-x * x) / 2)) for x in samples]
+        values = []
+        sr = 0
+        od = 0
+        for x in samples:
+            rand = random.uniform(0, a)
+            sr = (sr + rand) / 2
+            od = (od + math.sqrt((rand - sr)*(rand - sr))) / math.sqrt(2)
+            values.append(1 / math.sqrt(2 * math.pi) * math.exp(-(x - sr)*(x - sr) / (od*od**2)))
 
         return Signal(samples, values, 'casual')
 

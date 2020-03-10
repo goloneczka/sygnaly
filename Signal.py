@@ -48,3 +48,10 @@ class Signal:
             plt.plot(self.samples, self.values)
 
         plt.show()
+
+    def show_hist(self):
+        n = input("podaj ilosc przedzialow: ")
+        if self.tag != 'discreet':
+            plt.hist(self.values, bins=int(n), rwidth=0.95)
+
+        plt.show()

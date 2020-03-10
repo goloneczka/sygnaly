@@ -18,15 +18,16 @@ if __name__ == "__main__":
     individualSignalDiscreet = IndividualSignalDiscreet()
     impulsSignalDiscreet = ImpulsSignalDiscreet()
 
-    signalContext = SignalContext(reactSignal)
+    signalContext = SignalContext(gaussSignal)
     signal_1 = signalContext.context_sygnal()
+    signal_1.show_hist()
     signal_1.show_plot()
 
-    signalContext = SignalContext(SinusSignal)
+    signalContext = SignalContext(sinusSignal)
     signal_2 = signalContext.context_sygnal()
     signal_2.show_plot()
 
-    signal_1.calculate_absolute_average_value()
+    print(signal_1.calculate_absolute_average_value())
 
     operations = Operations()
     signal_3 = operations.mult(signal_1, signal_2)
