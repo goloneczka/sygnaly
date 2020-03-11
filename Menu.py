@@ -2,8 +2,12 @@
 from consolemenu import *
 from consolemenu.items import *
 
+from Operations import *
 from signals.SignalContext import *
 from signals.Signals import *
+
+signal1 = None
+signal2 = None
 
 
 def createStartMenu():
@@ -13,10 +17,10 @@ def createStartMenu():
     # Create some items
     # A FunctionItem runs a Python function when selected
     draw_signal = FunctionItem("Draw one signal", chooseSignalMenu)
-    add_signals = FunctionItem("Add two signals", twoSignals)
-    sub_signals = FunctionItem("Sub two signals", twoSignals)
-    mult_signals = FunctionItem("Mult two signals", twoSignals)
-    div_signals = FunctionItem("Div two signals", twoSignals)
+    add_signals = FunctionItem("Add two signals", twoSignals, [1])
+    sub_signals = FunctionItem("Sub two signals", twoSignals, [2])
+    mult_signals = FunctionItem("Mult two signals", twoSignals, [3])
+    div_signals = FunctionItem("Div two signals", twoSignals, [4])
 
     # Once we're done creating them, we just add the items to the menu
     menu.append_item(draw_signal)
@@ -29,34 +33,34 @@ def createStartMenu():
     menu.show()
 
 
-def chooseSignalMenu():
+def chooseSignalMenu(which_signal=1):
     # Create the menu
     menu = ConsoleMenu("Choose signal")
 
     # Create some items
     # A FunctionItem runs a Python function when selected
     individualSignal = FunctionItem("IndividualSignal", drawSignal,
-                                    [IndividualSignal()], should_exit=True)
+                                    [IndividualSignal(), which_signal], should_exit=True)
     gaussSignal = FunctionItem("GaussSignal", drawSignal,
-                               [GaussSignal()], should_exit=True)
+                               [GaussSignal(), which_signal], should_exit=True)
     sinusSignal = FunctionItem("SinusSignal", drawSignal,
-                               [SinusSignal()], should_exit=True)
+                               [SinusSignal(), which_signal], should_exit=True)
     sinusHalfSignal = FunctionItem("SinusHalfSignal", drawSignal,
-                                   [SinusHalfSignal()], should_exit=True)
+                                   [SinusHalfSignal(), which_signal], should_exit=True)
     sinusTwoHalfSignal = FunctionItem("SinusTwoHalfSignal", drawSignal,
-                                      [SinusTwoHalfSignal()], should_exit=True)
+                                      [SinusTwoHalfSignal(), which_signal], should_exit=True)
     reactSignal = FunctionItem("RectSignal", drawSignal,
-                               [RectSignal()], should_exit=True)
+                               [RectSignal(), which_signal], should_exit=True)
     triangleSignal = FunctionItem("TriangleSignal", drawSignal,
-                                  [TriangleSignal()], should_exit=True)
+                                  [TriangleSignal(), which_signal], should_exit=True)
     rectSimetricSignal = FunctionItem("RectSimetricSignal", drawSignal,
-                                      [RectSimetricSignal()], should_exit=True)
+                                      [RectSimetricSignal(), which_signal], should_exit=True)
     jumpSignal = FunctionItem("JumpSignal", drawSignal,
-                              [JumpSignal()], should_exit=True)
+                              [JumpSignal(), which_signal], should_exit=True)
     individualSignalDiscreet = FunctionItem("IndividualSignalDiscreet", drawSignal,
-                                            [IndividualSignalDiscreet()], should_exit=True)
+                                            [IndividualSignalDiscreet(), which_signal], should_exit=True)
     impulsSignalDiscreet = FunctionItem("ImpulsSignalDiscreet", drawSignal,
-                                        [ImpulsSignalDiscreet()], should_exit=True)
+                                        [ImpulsSignalDiscreet(), which_signal], should_exit=True)
 
     # Once we're done creating them, we just add the items to the menu
     menu.append_item(individualSignal)
@@ -75,7 +79,7 @@ def chooseSignalMenu():
     menu.show()
 
 
-def drawSignal(signal):
+def drawSignal(signal, which_signal=1):
     signalContext = SignalContext(signal)
     signal_1 = signalContext.context_sygnal()
     signal_1.show_hist()
@@ -85,7 +89,39 @@ def drawSignal(signal):
     print("Moc średnia = " + str(signal_1.calculate_avg_pow()))
     print("Wariacja = " + str(signal_1.calculate_variance()))
     print("Wartość skuteczna = " + str(signal_1.calculate_effective_value()))
+    if which_signal == 1:
+        global signal1
+        signal1 = signal_1
+    else:
+        global signal2
+        signal2 = signal_1
 
 
-def twoSignals():
-    print("2 Signals")
+def twoSignals(what_should_i_do):
+    # what_should_i_do --> 1.Addition, 2.Subtraction, 3.Multiplication, 4.Division
+    chooseSignalMenu(1)
+    chooseSignalMenu(2)
+    operations = Operations()
+    global signal1, signal2
+    if signal1 is not None and signal2 is not None:
+        if what_should_i_do == 1:
+            signal_result = operations.add(signal1, signal2)
+            signal_result.show_plot()
+            signal_result.show_hist()
+        elif what_should_i_do == 2:
+            signal_result = operations.sub(signal1, signal2)
+            signal_result.show_plot()
+            signal_result.show_hist()
+        elif what_should_i_do == 3:
+            signal_result = operations.mult(signal1, signal2)
+            signal_result.show_plot()
+            signal_result.show_hist()
+        elif what_should_i_do == 4:
+            signal_result = operations.div(signal1, signal2)
+            signal_result.show_plot()
+            signal_result.show_hist()
+        else:
+            print("Coś poszło nie tak. Podana opcja jest błędna.")
+    else:
+        print("Coś poszło nie tak . . . ")
+
