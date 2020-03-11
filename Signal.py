@@ -61,8 +61,6 @@ class Signal:
         with open(file_name + ".txt", "w") as work_data:
             work_data.write(str(self.samples.__len__()))
             work_data.write("\n")
-            work_data.write(str(self.values.__len__()))
-            work_data.write("\n")
             for value in self.samples:
                 str_value = str(value)
                 work_data.write(str_value)

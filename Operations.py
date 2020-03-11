@@ -54,7 +54,7 @@ class Operations:
 
         values = []
         for y1, y2 in zip(signal_1.values, signal_2.values):
-            if y2 is not 0:
+            if y2 != 0 and y1 != 0:
                 values.append(y1 / y2)
             else:
                 values.append(0)

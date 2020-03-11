@@ -1,25 +1,19 @@
 from Menu import createStartMenu
-from Operations import Operations
-from signals.SignalContext import SignalContext
-from signals.Signals import SinusHalfSignal, SinusTwoHalfSignal, GaussSignal, SinusSignal, RectSignal, TriangleSignal, \
-    RectSimetricSignal, JumpSignal, IndividualSignalDiscreet, ImpulsSignalDiscreet, IndividualSignal
-
 
 if __name__ == "__main__":
-    # sygnaly
-    individualSignal = IndividualSignal()
-    gaussSignal = GaussSignal()  # ten sygnal jest cos nie halo
-    sinusSignal = SinusSignal()
-    sinusHalfSignal = SinusHalfSignal()
-    sinusTwoHalfSignal = SinusTwoHalfSignal()
-    reactSignal = RectSignal()
-    triangleSignal = TriangleSignal()
-    rectSimetricSignal = RectSimetricSignal()
-    jumpSignal = JumpSignal()
-    individualSignalDiscreet = IndividualSignalDiscreet()
-    impulsSignalDiscreet = ImpulsSignalDiscreet()
-
     createStartMenu()
+    # individualSignal = IndividualSignal()
+    # gaussSignal = GaussSignal()  # ten sygnal jest cos nie halo
+    # sinusSignal = SinusSignal()
+    # sinusHalfSignal = SinusHalfSignal()
+    # sinusTwoHalfSignal = SinusTwoHalfSignal()
+    # reactSignal = RectSignal()
+    # triangleSignal = TriangleSignal()
+    # rectSimetricSignal = RectSimetricSignal()
+    # jumpSignal = JumpSignal()
+    # individualSignalDiscreet = IndividualSignalDiscreet()
+    # impulsSignalDiscreet = ImpulsSignalDiscreet()
+    #
     # signalContext = SignalContext(sinusSignal)
     # signal_1 = signalContext.context_sygnal()
     # signal_1.show_hist()
