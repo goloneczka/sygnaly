@@ -55,3 +55,19 @@ class Signal:
             plt.hist(self.values, bins=int(n), rwidth=0.95)
 
         plt.show()
+
+    def save_to_file(self):
+        file_name = input("WPISZ NAZWE PLIKU (bez rozszerzenia .txt): ")
+        with open(file_name + ".txt", "w") as work_data:
+            work_data.write(str(self.samples.__len__()))
+            work_data.write("\n")
+            work_data.write(str(self.values.__len__()))
+            work_data.write("\n")
+            for value in self.samples:
+                str_value = str(value)
+                work_data.write(str_value)
+                work_data.write("\n")
+            for value in self.values:
+                str_value = str(value)
+                work_data.write(str_value)
+                work_data.write("\n")

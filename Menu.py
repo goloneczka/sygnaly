@@ -1,10 +1,14 @@
 # Import the necessary packages
+import tkinter
+
 from consolemenu import *
 from consolemenu.items import *
 
 from Operations import *
 from signals.SignalContext import *
 from signals.Signals import *
+import tkinter as tk
+from tkinter import filedialog
 
 signal1 = None
 signal2 = None
@@ -79,22 +83,37 @@ def chooseSignalMenu(which_signal=1):
     menu.show()
 
 
+def showAllResultsForSignal(signal):
+    signal.show_hist()
+    signal.show_plot()
+    print("Wartość średnia = " + str(signal.calculate_average_value()))
+    print("Wartość średnia bezwzględna = " + str(signal.calculate_absolute_average_value()))
+    print("Moc średnia = " + str(signal.calculate_avg_pow()))
+    print("Wariacja = " + str(signal.calculate_variance()))
+    print("Wartość skuteczna = " + str(signal.calculate_effective_value()))
+
+
 def drawSignal(signal, which_signal=1):
     signalContext = SignalContext(signal)
     signal_1 = signalContext.context_sygnal()
-    signal_1.show_hist()
-    signal_1.show_plot()
-    print("Wartość średnia = " + str(signal_1.calculate_average_value()))
-    print("Wartość średnia bezwzględna = " + str(signal_1.calculate_absolute_average_value()))
-    print("Moc średnia = " + str(signal_1.calculate_avg_pow()))
-    print("Wariacja = " + str(signal_1.calculate_variance()))
-    print("Wartość skuteczna = " + str(signal_1.calculate_effective_value()))
+    showAllResultsForSignal(signal_1)
+    signal_1.save_to_file()
     if which_signal == 1:
         global signal1
         signal1 = signal_1
     else:
         global signal2
         signal2 = signal_1
+
+
+def drawLoadedSignal(signal, which_signal=1):
+    showAllResultsForSignal(signal)
+    if which_signal == 1:
+        global signal1
+        signal1 = signal
+    else:
+        global signal2
+        signal2 = signal
 
 
 def twoSignals(what_should_i_do):
@@ -132,7 +151,7 @@ def loadDataMenu(which_signal=1):
 
     # Create some items
     # A FunctionItem runs a Python function when selected
-    load_data = FunctionItem("Load Data", input, should_exit=True)
+    load_data = FunctionItem("Load Data", loadDataAndDraw, [which_signal], should_exit=True)
     create_new = FunctionItem("Create new signal", chooseSignalMenu, [which_signal], should_exit=True)
 
     # Once we're done creating them, we just add the items to the menu
@@ -142,3 +161,27 @@ def loadDataMenu(which_signal=1):
     # Finally, we call show to show the menu and allow the user to interact
     menu.show()
 
+
+def loadDataAndDraw(which_signal=1):
+    root = tkinter.Tk()
+    root.filename = tkinter.filedialog.askopenfilename()
+    print(root.filename)
+    root.destroy()
+    counter = 0
+    howManyX = 0
+    howManyY = 0
+    arrayX = []
+    arrayY = []
+    with open(root.filename, "r") as work_data:
+        for line in work_data:
+            if counter == 0:
+                howManyX = int(line)
+            elif counter == 1:
+                howManyY = int(line)
+            elif 1 < counter < (2 + howManyX):
+                arrayX.append(float(line))
+            else:
+                arrayY.append(float(line))
+            counter += 1
+    signal = Signal(arrayX, arrayY, 'casual')
+    drawLoadedSignal(signal, which_signal)
