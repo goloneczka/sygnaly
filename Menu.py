@@ -16,7 +16,7 @@ def createStartMenu():
 
     # Create some items
     # A FunctionItem runs a Python function when selected
-    draw_signal = FunctionItem("Draw one signal", chooseSignalMenu)
+    draw_signal = FunctionItem("Draw one signal", loadDataMenu)
     add_signals = FunctionItem("Add two signals", twoSignals, [1])
     sub_signals = FunctionItem("Sub two signals", twoSignals, [2])
     mult_signals = FunctionItem("Mult two signals", twoSignals, [3])
@@ -99,8 +99,8 @@ def drawSignal(signal, which_signal=1):
 
 def twoSignals(what_should_i_do):
     # what_should_i_do --> 1.Addition, 2.Subtraction, 3.Multiplication, 4.Division
-    chooseSignalMenu(1)
-    chooseSignalMenu(2)
+    loadDataMenu(1)
+    loadDataMenu(2)
     operations = Operations()
     global signal1, signal2
     if signal1 is not None and signal2 is not None:
@@ -124,4 +124,21 @@ def twoSignals(what_should_i_do):
             print("Coś poszło nie tak. Podana opcja jest błędna.")
     else:
         print("Coś poszło nie tak . . . ")
+
+
+def loadDataMenu(which_signal=1):
+    # Create the menu
+    menu = ConsoleMenu("Load data or create new signal")
+
+    # Create some items
+    # A FunctionItem runs a Python function when selected
+    load_data = FunctionItem("Load Data", input, should_exit=True)
+    create_new = FunctionItem("Create new signal", chooseSignalMenu, [which_signal], should_exit=True)
+
+    # Once we're done creating them, we just add the items to the menu
+    menu.append_item(load_data)
+    menu.append_item(create_new)
+
+    # Finally, we call show to show the menu and allow the user to interact
+    menu.show()
 
