@@ -5,7 +5,9 @@ import matplotlib.pyplot as plt
 class Signal:
 
     def __init__(self, samples, values, tag):
+        # x
         self.samples = samples
+        # y
         self.values = values
         self.tag = tag
 
@@ -14,21 +16,21 @@ class Signal:
         for x in self.values:
             sigma += x
 
-        return 1 / (self.samples[-1] - self.samples[0] + 1) * sigma
+        return 1 / (len(self.samples) + 0 + 1) * sigma
 
     def calculate_absolute_average_value(self):
         sigma = 0.0
         for x in self.values:
             sigma += math.fabs(x)
 
-        return 1 / (self.samples[-1] - self.samples[0] + 1) * sigma
+        return 1 / (len(self.samples) + 0 + 1) * sigma
 
     def calculate_avg_pow(self):
         sigma = 0.0
         for x in self.values:
             sigma += x * x
 
-        return 1 / (self.samples[-1] - self.samples[0] + 1) * sigma
+        return 1 / (len(self.samples) + 0 + 1) * sigma
 
     def calculate_variance(self):
         sigma = 0.0
@@ -36,7 +38,7 @@ class Signal:
         for x in self.values:
             sigma += (x - avg) * (x - avg)
 
-        return 1 / (self.samples[-1] - self.samples[0] + 1) * sigma
+        return 1 / (len(self.samples) + 0 + 1) * sigma
 
     def calculate_effective_value(self):
         return math.sqrt(self.calculate_avg_pow())

@@ -77,11 +77,7 @@ def chooseSignalMenu(which_signal=1):
 def showAllResultsForSignal(signal):
     signal.show_hist()
     signal.show_plot()
-    print("Wartość średnia = " + str(signal.calculate_average_value()))
-    print("Wartość średnia bezwzględna = " + str(signal.calculate_absolute_average_value()))
-    print("Moc średnia = " + str(signal.calculate_avg_pow()))
-    print("Wariacja = " + str(signal.calculate_variance()))
-    print("Wartość skuteczna = " + str(signal.calculate_effective_value()))
+    printAllAdditionalInfo(signal)
 
 
 def which_signal_save(signal, which):
@@ -118,22 +114,38 @@ def twoSignals(what_should_i_do):
             signal_result = operations.add(signal1, signal2)
             signal_result.show_plot()
             signal_result.show_hist()
+            signal_result.save_to_file()
+            printAllAdditionalInfo(signal_result)
         elif what_should_i_do == 2:
             signal_result = operations.sub(signal1, signal2)
             signal_result.show_plot()
             signal_result.show_hist()
+            signal_result.save_to_file()
+            printAllAdditionalInfo(signal_result)
         elif what_should_i_do == 3:
             signal_result = operations.mult(signal1, signal2)
             signal_result.show_plot()
             signal_result.show_hist()
+            signal_result.save_to_file()
+            printAllAdditionalInfo(signal_result)
         elif what_should_i_do == 4:
             signal_result = operations.div(signal1, signal2)
             signal_result.show_plot()
             signal_result.show_hist()
+            signal_result.save_to_file()
+            printAllAdditionalInfo(signal_result)
         else:
             print("Coś poszło nie tak. Podana opcja jest błędna.")
     else:
         print("Coś poszło nie tak . . . ")
+
+
+def printAllAdditionalInfo(signal):
+    print("Wartość średnia = " + str(signal.calculate_average_value()))
+    print("Wartość średnia bezwzględna = " + str(signal.calculate_absolute_average_value()))
+    print("Moc średnia = " + str(signal.calculate_avg_pow()))
+    print("Wariacja = " + str(signal.calculate_variance()))
+    print("Wartość skuteczna = " + str(signal.calculate_effective_value()))
 
 
 def loadDataMenu(which_signal=1):
