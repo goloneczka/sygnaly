@@ -125,7 +125,6 @@ class IndividualSignalDiscreet:
         a, n1, ns, f = self.signals_parameters.get_params_discreet_1()
 
         samples = np.linspace(n1, ns * 2, int(f) * ns * 2)
-        print(samples)
         values = [a if x == ns else 0 for x in samples]
         return Signal(samples, values, 'discreet')
 

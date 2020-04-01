@@ -1,30 +1,30 @@
-from Menu import createStartMenu
+# from Menu import createStartMenu
+from Conversions import Conversions
+from signals.SignalContext import SignalContext
+from signals.Signals import IndividualSignal, GaussSignal, SinusSignal, SinusHalfSignal, TriangleSignal, \
+    SinusTwoHalfSignal, RectSignal, RectSimetricSignal, JumpSignal, IndividualSignalDiscreet, ImpulsSignalDiscreet
 
 if __name__ == "__main__":
-    createStartMenu()
-    # individualSignal = IndividualSignal()
-    # gaussSignal = GaussSignal()  # ten sygnal jest cos nie halo
-    # sinusSignal = SinusSignal()
-    # sinusHalfSignal = SinusHalfSignal()
-    # sinusTwoHalfSignal = SinusTwoHalfSignal()
-    # reactSignal = RectSignal()
-    # triangleSignal = TriangleSignal()
-    # rectSimetricSignal = RectSimetricSignal()
-    # jumpSignal = JumpSignal()
-    # individualSignalDiscreet = IndividualSignalDiscreet()
-    # impulsSignalDiscreet = ImpulsSignalDiscreet()
-    #
-    # signalContext = SignalContext(sinusSignal)
-    # signal_1 = signalContext.context_sygnal()
-    # signal_1.show_hist()
-    # signal_1.show_plot()
-    #
-    # signalContext = SignalContext(sinusSignal)
-    # signal_2 = signalContext.context_sygnal()
-    # signal_2.show_plot()
-    #
-    # print(signal_1.calculate_absolute_average_value())
-    #
-    # operations = Operations()
-    # signal_3 = operations.mult(signal_1, signal_2)
-    # signal_3.show_plot()
+    #   createStartMenu()
+    individualSignal = IndividualSignal()
+    gaussSignal = GaussSignal()  # ten sygnal jest cos nie halo
+    sinusSignal = SinusSignal()
+    sinusHalfSignal = SinusHalfSignal()
+    sinusTwoHalfSignal = SinusTwoHalfSignal()
+    reactSignal = RectSignal()
+    triangleSignal = TriangleSignal()
+    rectSimetricSignal = RectSimetricSignal()
+    jumpSignal = JumpSignal()
+    individualSignalDiscreet = IndividualSignalDiscreet()
+    impulsSignalDiscreet = ImpulsSignalDiscreet()
+
+    signalContext = SignalContext(sinusSignal)
+    signal_1 = signalContext.context_sygnal()
+    signal_1.show_plot()
+
+    connversions = Conversions()
+    signal_2 = connversions.even_quantization_with_load(signal_1, 20, 6)
+    signal_2.show_plot()
+    signal_3 = connversions.sinc_recon(signal_1, 20, 20)
+    signal_3.show_plot()
+
