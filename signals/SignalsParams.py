@@ -3,10 +3,14 @@ class SignalsParams:
     n = 200  # czestosc probkowania
 
     def get_params(self):
-        a = input("podaj amplitude (A):")
-        t = input("podaj okres (T): ")
-        t1 = input("podaj czas poczatkowy (t1): ")
-        d = input("podaj czas trwania (d): ")
+        # a = input("podaj amplitude (A):")
+        # t = input("podaj okres (T): ")
+        # t1 = input("podaj czas poczatkowy (t1): ")
+        # d = input("podaj czas trwania (d): ")
+        a = 3
+        t = 3
+        t1 = 0
+        d = 5
         return float(a), float(t), float(t1), float(d) + float(t1), self.n
 
     def get_params_gauss(self):
