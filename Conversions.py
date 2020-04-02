@@ -45,7 +45,29 @@ class Conversions:
 
         return Signal(samples, values, 'casual')
 
-    def sinc(self, t):
+    @staticmethod
+    def tri(t):
+        return 0 if np.math.fabs(t) > 1 else 1 - np.math.fabs(t)
+
+    def first_holder(self, signal, sampl_freq, freq):
+        signal = self.sampling(signal, sampl_freq)
+        base_step = signal.samples[1] - signal.samples[0]
+        values = []
+        samples = []
+        t = signal.samples[0]
+
+        while t < signal.samples[-1]:
+            sum1 = 0.0
+            for i in range(len(signal.samples)):
+                sum1 += signal.values[i] * self.tri((t - i*base_step) / base_step)
+            samples.append(t)
+            values.append(sum1)
+            t += 1 / freq
+
+        return Signal(samples, values, 'discreet')
+
+    @staticmethod
+    def sinc(t):
         return 1 if t == 0 else np.sin(np.math.pi * t) / (np.math.pi * t)
 
     def sinc_recon(self, signal, sampl_freq, freq):
@@ -63,6 +85,18 @@ class Conversions:
             values.append(sum1)
             t += 1/freq
 
-        return Signal(samples, values, 'discreet')
+        return Signal(samples, values, 'casual')
 
 
+class ConversionsMeasurement:
+
+    def MSE(self, signal):
+        return signal.calculate_variance()
+
+    def SNE(self, signal):
+        return 10 * np.math.log10(signal.calculate_avg_pow() / signal.calculate_variance())
+
+    def MD(self, signal):
+
+        return np.math.fabs(max(signal.values, key=lambda v: abs(v - signal.calculate_average_value())) -
+                            signal.calculate_average_value())
