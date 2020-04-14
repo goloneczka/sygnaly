@@ -25,9 +25,10 @@ if __name__ == "__main__":
     connversions = Conversions()
     signal_2 = connversions.even_quantization_with_load(signal_1, 15, 6)
     signal_2.show_plot()
-    signal_3 = connversions.first_holder(signal_1, 15, 30)
+    signal_3 = connversions.sinc_recon(signal_1, 15, 30)
     signal_3.show_plot()
 
     connversions_meas = ConversionsMeasurement()
-    print( connversions_meas.MD(signal_3), connversions_meas.MSE(signal_3), connversions_meas.SNE(signal_3))
+    print(connversions_meas.MD(signal_3), connversions_meas.MSE(signal_3), connversions_meas.SNE(signal_3))
+    connversions_meas.show_plot(signal_1, signal_3)
 

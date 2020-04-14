@@ -1,7 +1,7 @@
 import numpy as np
 from sortedcontainers import SortedSet
 from Signal import Signal
-from numpy import zeros, array, sign
+import matplotlib.pyplot as plt
 
 
 class Conversions:
@@ -22,12 +22,12 @@ class Conversions:
         min_val = min(signal.values)
 
         tree_set = SortedSet()
-        for i in range(quantization_level):
+        for i in range(quantization_level+1):
             tree_set.add(min_val + (((max_val - min_val) / quantization_level) * i))
 
         values = [min(tree_set, key=lambda t_v: abs(t_v - v)) for v in signal.values]
 
-        return Signal(signal.samples, values, 'discreet')
+        return Signal(signal.samples, values, 'casual')
 
     def zero_holder(self, signal, sampl_freq, freq):
         signal = self.sampling(signal, sampl_freq)
@@ -64,7 +64,7 @@ class Conversions:
             values.append(sum1)
             t += 1 / freq
 
-        return Signal(samples, values, 'discreet')
+        return Signal(samples, values, 'casual')
 
     @staticmethod
     def sinc(t):
@@ -100,3 +100,9 @@ class ConversionsMeasurement:
 
         return np.math.fabs(max(signal.values, key=lambda v: abs(v - signal.calculate_average_value())) -
                             signal.calculate_average_value())
+
+    def show_plot(self, signal1, signal2):
+        plt.plot(signal1.samples, signal1.values)
+        plt.plot(signal2.samples, signal2.values)
+
+        plt.show()
