@@ -8,9 +8,9 @@ class SignalsParams:
         # t1 = input("podaj czas poczatkowy (t1): ")
         # d = input("podaj czas trwania (d): ")
         a = 3
-        t = 3
+        t = 4
         t1 = 0
-        d = 5
+        d = 10
         return float(a), float(t), float(t1), float(d) + float(t1), self.n
 
     def get_params_gauss(self):
