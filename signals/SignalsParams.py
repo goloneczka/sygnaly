@@ -1,6 +1,6 @@
 
 class SignalsParams:
-    n = 200  # czestosc probkowania
+    n = 500  # czestosc probkowania
 
     def get_params(self):
         # a = input("podaj amplitude (A):")
@@ -8,23 +8,44 @@ class SignalsParams:
         # t1 = input("podaj czas poczatkowy (t1): ")
         # d = input("podaj czas trwania (d): ")
         a = 3
-        t = 4
+        t = 10
         t1 = 0
-        d = 10
+        d = 50
         return float(a), float(t), float(t1), float(d) + float(t1), self.n
 
     def get_params_gauss(self):
-        a = input("podaj amplitude (A):")
-        t1 = input("podaj czas poczatkowy (t1): ")
-        d = input("podaj czas trwania (d): ")
+        a = 3
+        t1 = 0
+        d = 100
+        # a = input("podaj amplitude (A):")
+        # t1 = input("podaj czas poczatkowy (t1): ")
+        # d = input("podaj czas trwania (d): ")
         return float(a), float(t1), float(d) + float(t1), self.n
 
     def get_params_react(self):
-        a = input("podaj amplitude (A):")
-        t = input("podaj okres (T): ")
-        t1 = input("podaj czas poczatkowy (t1): ")
-        d = input("podaj czas trwania (d): ")
-        k = input("podaj wspolczynnik wypelnienia (k): ")
+        # a = input("podaj amplitude (A):")
+        # t = input("podaj okres (T): ")
+        # t1 = input("podaj czas poczatkowy (t1): ")
+        # d = input("podaj czas trwania (d): ")
+        # k = input("podaj wspolczynnik wypelnienia (k): ")
+        a = 3
+        t = 10
+        t1 = 0
+        d = 50
+        k = 0.5
+        return float(a), float(t), float(t1), float(d) + float(t1), float(k), self.n
+
+    def get_params_triangle(self):
+        # a = input("podaj amplitude (A):")
+        # t = input("podaj okres (T): ")
+        # t1 = input("podaj czas poczatkowy (t1): ")
+        # d = input("podaj czas trwania (d): ")
+        # k = input("podaj wspolczynnik wypelnienia (k): ")
+        a = 10
+        t = 5
+        t1 = 0
+        d = 100
+        k = 0.5
         return float(a), float(t), float(t1), float(d) + float(t1), float(k), self.n
 
     def get_params_jump(self):

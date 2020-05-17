@@ -45,7 +45,7 @@ class Signal:
 
     def show_plot(self):
         if self.tag == 'discreet':
-            plt.plot(self.samples, self.values, 'ro')
+            plt.plot(self.samples, self.values, 'bo')
         else:
             plt.plot(self.samples, self.values)
 
