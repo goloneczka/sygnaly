@@ -15,8 +15,7 @@ class IndividualSignal:
         a, t1, d, n = self.signals_parameters.get_params_gauss()
 
         samples = np.linspace(t1, d, n)
-        values = [randint(int(-a), int(a)) for x in samples]
-
+        values = [random.uniform(int(-a), int(a)) for x in samples]
         return Signal(samples, values, 'casual')
 
 
@@ -41,7 +40,7 @@ class SinusSignal:
         samples = np.linspace(t1, d, n)
         values = [(a * math.sin(2 * math.pi * (x - t1) / t)) for x in samples]
 
-        return Signal(samples, values, 'casual')
+        return Signal(samples, values, 'discreet')
 
 
 class SinusHalfSignal:
@@ -54,7 +53,7 @@ class SinusHalfSignal:
         values = [1 / 2 * a * (math.sin(2 * math.pi * (x - t1) / t) +
                                math.fabs(math.sin(2 * math.pi * (x - t1) / t))) for x in samples]
 
-        return Signal(samples, values, 'casual')
+        return Signal(samples, values, 'discreet')
 
 
 class SinusTwoHalfSignal:
@@ -66,7 +65,7 @@ class SinusTwoHalfSignal:
         samples = np.linspace(t1, d, n)
         values = [a * math.fabs(math.sin(2 * math.pi * (x - t1) / t)) for x in samples]
 
-        return Signal(samples, values, 'casual')
+        return Signal(samples, values, 'discreet')
 
 
 class RectSignal:
@@ -78,7 +77,7 @@ class RectSignal:
         samples = np.linspace(t1, d, n)
         values = [a if x < kw * t + t * int(x / t) else 0 for x in samples]
 
-        return Signal(samples, values, 'casual')
+        return Signal(samples, values, 'discreet')
 
 
 class RectSimetricSignal:
@@ -97,13 +96,13 @@ class TriangleSignal:
     signals_parameters = SignalsParams()
 
     def signal(self):
-        a, t, t1, d, kw, n = self.signals_parameters.get_params_react()
+        a, t, t1, d, kw, n = self.signals_parameters.get_params_triangle()
 
         samples = np.linspace(t1, d, n)
         values = [a * (x - int(x / t) * t - t1) / (kw * t) if x < kw * t + t * int(x / t)
                   else -a * (x - int(x / t) * t - t1) / (t - kw * t) + a / (1 - kw) for x in samples]
 
-        return Signal(samples, values, 'casual')
+        return Signal(samples, values, 'discreet')
 
 
 class JumpSignal:
