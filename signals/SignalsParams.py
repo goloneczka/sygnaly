@@ -16,7 +16,7 @@ class SignalsParams:
     def get_params_gauss(self):
         a = 3
         t1 = 0
-        d = 100
+        d = 50
         # a = input("podaj amplitude (A):")
         # t1 = input("podaj czas poczatkowy (t1): ")
         # d = input("podaj czas trwania (d): ")

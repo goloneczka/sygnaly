@@ -32,10 +32,9 @@ if __name__ == "__main__":
     # signal_3 = connversions.sinc_recon(signal_1, 50, 50)
     # signal_3.show_plot()
     #
-    connversions_meas = ConversionsMeasurement()
-    # print(connversions_meas.MD(signal_3), connversions_meas.MSE(signal_3), connversions_meas.SNE(signal_3))
-    # connversions_meas.show_plot(signal_1, signal_3)
 
+
+    # ZAD 3
     # signalContext = SignalContext(sinusSignal)
     # signal_2A = signalContext.context_sygnal()
     # signal_2A.show_plot()
@@ -47,7 +46,7 @@ if __name__ == "__main__":
     # operations = Operations()
     # signal_2C = operations.add(signal_2A, signal_2)
     # signal_2C.show_plot()
-
+    #
     # discreet_operations = DiscreetOperations()
     # signal_3 = discreet_operations.twine(signal_2, signal_2A)
     # signal_3.show_plot()
@@ -60,10 +59,14 @@ if __name__ == "__main__":
 
     # signal5 = discreet_operations.correlation(signal_2, signal_2A)
     # signal5.show_plot()
+    #
+    # signal6 = discreet_operations.correlation_with_twine(signal_2, signal_2A)
+    # signal6.show_plot()
 
-    antene = Antene()
-    antene.basic_signal()
-    antene.feedback_signal(50)
+    # antene = Antene(20, 400, 10, 4, 10)
+    # values = antene.antene_diffrence(4000)
+    # print("odleglosc obliczona: ", values)
+
 
 
 

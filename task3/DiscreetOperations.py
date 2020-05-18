@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 from Signal import Signal
 
@@ -68,7 +69,6 @@ class DiscreetOperations:
 
     @staticmethod
     def correlation(signal_a, signal_b):
-        samples = []
         values = []
 
         for i in range(len(signal_a.values) + len(signal_b.values)):
