@@ -1,11 +1,15 @@
 # from Menu import createStartMenu
+import numpy as np
+
 from Conversions import Conversions, ConversionsMeasurement
 from Operations import Operations
 from signals.SignalContext import SignalContext
 from signals.Signals import IndividualSignal, GaussSignal, SinusSignal, SinusHalfSignal, TriangleSignal, \
-    SinusTwoHalfSignal, RectSignal, RectSimetricSignal, JumpSignal, IndividualSignalDiscreet, ImpulsSignalDiscreet
+    SinusTwoHalfSignal, RectSignal, RectSimetricSignal, JumpSignal, IndividualSignalDiscreet, ImpulsSignalDiscreet, \
+    StFourierSinusSignal, ScFourierSinusSignal
 from task3.Antene import Antene
 from task3.DiscreetOperations import DiscreetOperations
+from task4.Fourier import DiscreetFourier, WaveletTransform, KolosFF
 
 if __name__ == "__main__":
     #   createStartMenu()
@@ -20,10 +24,12 @@ if __name__ == "__main__":
     jumpSignal = JumpSignal()
     individualSignalDiscreet = IndividualSignalDiscreet()
     impulsSignalDiscreet = ImpulsSignalDiscreet()
+    stFourier = StFourierSinusSignal()
+    scFourier = ScFourierSinusSignal()
 
-    # signalContext = SignalContext(sinusHalfSignal)
-    # signal_1 = signalContext.context_sygnal()
-
+    signalContext = SignalContext(scFourier)
+    signal_1 = signalContext.context_sygnal()
+    signal_1.show_plot()
 
     # ZAD 2
     # connversions = Conversions()
@@ -32,7 +38,6 @@ if __name__ == "__main__":
     # signal_3 = connversions.sinc_recon(signal_1, 50, 50)
     # signal_3.show_plot()
     #
-
 
     # ZAD 3
     # signalContext = SignalContext(sinusSignal)
@@ -67,8 +72,21 @@ if __name__ == "__main__":
     # values = antene.antene_diffrence(4000)
     # print("odleglosc obliczona: ", values)
 
+    # ZAD4
 
+    # fourier = DiscreetFourier()
+    # wavelet = WaveletTransform()
+    # signal_2 = fourier.transform(signal_1)
+    # signal_3 = fourier.reverse_transform(signal_2)
+    # signal_3.show_plot()
 
+    # signal_2 = fourier.fast_transform(signal_1)
+    # signal_3 = fourier.reverse_transform(signal_2)
+    # signal_3.show_plot()
 
+    #
+    # signal_2 = wavelet.transformation(signal_1)
+    # signal_3 = wavelet.reverse_transform(signal_2)
+    # signal_3.show_plot()
 
 

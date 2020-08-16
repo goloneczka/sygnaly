@@ -142,3 +142,32 @@ class ImpulsSignalDiscreet:
 
         values = [a if randint(1, 100) / 100 < p else 0 for x in samples]
         return Signal(samples, values, 'discreet')
+
+
+class StFourierSinusSignal:
+
+    def signal(self):
+        t1, d, n, t = 0, 10, 512, 1/16
+        samples = np.linspace(t1, d, n)
+
+        values1 = [(2 * math.sin(math.pi/2 + math.pi * (x - t1))) for x in samples]
+        values2 = [(5 * math.sin(math.pi / 2 + 4 * math.pi * (x - t1))) for x in samples]
+
+        values = [values1[i] + values2[i] for i in range(len(values2))]
+
+        return Signal(samples, values, 'casual')
+
+
+class ScFourierSinusSignal:
+
+    def signal(self):
+        t1, d, n, t = 0, 10, 512, 1/16
+        samples = np.linspace(t1, d, n)
+
+        values1 = [(2 * math.sin(math.pi * (x - t1))) for x in samples]
+        values2 = [(math.sin(2 * math.pi * (x - t1))) for x in samples]
+        values3 = [(5 * math.sin(4 * math.pi * (x - t1))) for x in samples]
+
+        values = [values1[i] + values2[i] + values3[i] for i in range(len(values2))]
+
+        return Signal(samples, values, 'casual')
